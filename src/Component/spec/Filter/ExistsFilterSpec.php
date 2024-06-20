@@ -27,11 +27,18 @@ final class ExistsFilterSpec extends ObjectBehavior
         $this->shouldImplement(FilterInterface::class);
     }
 
-    function it_does_nothing_if_there_is_no_data(DataSourceInterface $dataSource): void
+    function it_does_nothing_the_data_is_null(DataSourceInterface $dataSource): void
     {
         $dataSource->restrict(Argument::any())->shouldNotBeCalled();
 
         $this->apply($dataSource, Argument::any(), null, []);
+    }
+
+    function it_does_nothing_if_the_data_is_an_empty_string(DataSourceInterface $dataSource): void
+    {
+        $dataSource->restrict(Argument::any())->shouldNotBeCalled();
+
+        $this->apply($dataSource, Argument::any(), '', []);
     }
 
     function it_filters_off_all_data_with_provided_field_equal_to_null(

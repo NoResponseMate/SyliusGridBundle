@@ -24,7 +24,7 @@ final class ExistsFilter implements FilterInterface
 
     public function apply(DataSourceInterface $dataSource, string $name, $data, array $options): void
     {
-        if (null === $data) {
+        if (null === $data || '' === $data) {
             return;
         }
 
